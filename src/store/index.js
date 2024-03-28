@@ -8,7 +8,7 @@ export const useStore = createStore({
     },
     getters: {
         getCurrency(state) {
-            return state.currency?.data?.conversion_rates
+            return state.currency ? .data ? .conversion_rates
         },
     },
     mutations: {
@@ -18,8 +18,12 @@ export const useStore = createStore({
     },
     actions: {
         async fetchCurrency(ctx, value) {
-            const response = await axios.get('https://v6.exchangerate-api.com/v6/21f20c6fec891d7008b1af2f/latest/' + value)
-            ctx.commit('changeCurrency', response)
+            try {
+                const response = await axios.get('https://v6.exchangerate-api.com/v6/21f20c6fec891d7008b1af2f/latest/' + value);
+                ctx.commit('changeCurrency', response.data);
+            } catch (error) {
+                console.error('Error:', error);
+            }
         }
     },
 })
