@@ -8,7 +8,7 @@ export const useStore = createStore({
     },
     getters: {
         getCurrency(state) {
-            return state.currency ? .data ? .conversion_rates
+            return state.currency ?.data ?.conversion_rates
         },
     },
     mutations: {
